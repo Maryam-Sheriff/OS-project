@@ -29,7 +29,7 @@ public class copy extends javax.swing.JFrame {
         initComponents();
 
         try {
-            Process p = Runtime.getRuntime().exec("ls -a /");
+            Process p = Runtime.getRuntime().exec("ls -a " + path);
 
             BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
@@ -50,17 +50,17 @@ public class copy extends javax.swing.JFrame {
         }
 
         try {
-            Process k = Runtime.getRuntime().exec("ls -a /");
-            BufferedReader br2 = new BufferedReader(new InputStreamReader(k.getInputStream()));
+            Process p = Runtime.getRuntime().exec("ls -a " + path1);
+            BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-            String output2 = null;
-            ArrayList al2 = new ArrayList();
-            while ((output2 = br2.readLine()) != null) {
-                al2.add(output2);
+            String output = null;
+            ArrayList al = new ArrayList();
+            while ((output = br.readLine()) != null) {
+                al.add(output);
             }
 
             DefaultComboBoxModel dcbm2 = new DefaultComboBoxModel();
-            for (Object m : al2) {
+            for (Object m : al) {
                 dcbm2.addElement(m);
             }
             folders2.setModel(dcbm2);
@@ -247,16 +247,40 @@ public class copy extends javax.swing.JFrame {
 
     private void list2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_list2ActionPerformed
         if (folders.getSelectedItem() != null && folders2.getSelectedItem() != null) {
+
             path += "/" + folders.getSelectedItem();
             path1 += "/" + folders2.getSelectedItem();
+//            folderPath.setText(path);
+//            folderPath2.setText(path1);
+            try {
+                Process p = Runtime.getRuntime().exec("cp -r " + path + " " + path1);
+//
+                BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream())); // br to read command output
+                javax.swing.JOptionPane.showMessageDialog(null, "Copy Successful");
+//                String output = null; // store br  in a string
+//                ArrayList al = new ArrayList();
+//                while ((output = br.readLine()) != null) {
+//                    al.add(output);
+//                }
+//
+//                DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
+//                for (Object i : al) {
+//                    dcbm.addElement(i);
+//                }
+//                folders.setModel(dcbm);
+            } catch (IOException ex) {
+                javax.swing.JOptionPane.showMessageDialog(null, "Copy Failed");
+            }
+            path = "/";
+            path1 = "/";
             folderPath.setText(path);
             folderPath2.setText(path1);
             try {
-                Process p = Runtime.getRuntime().exec("cp -r " + path + "/" + path1);
+                Process p = Runtime.getRuntime().exec("ls -a " + path);
 
-                BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream())); // br to read command output
+                BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-                String output = null; // store br//  in a string
+                String output = null;
                 ArrayList al = new ArrayList();
                 while ((output = br.readLine()) != null) {
                     al.add(output);
@@ -267,6 +291,27 @@ public class copy extends javax.swing.JFrame {
                     dcbm.addElement(i);
                 }
                 folders.setModel(dcbm);
+
+            } catch (IOException ex) {
+                Logger.getLogger(copy.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+                Process p = Runtime.getRuntime().exec("ls -a " + path1);
+                BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+                String output = null;
+                ArrayList al = new ArrayList();
+                while ((output = br.readLine()) != null) {
+                    al.add(output);
+                }
+
+                DefaultComboBoxModel dcbm2 = new DefaultComboBoxModel();
+                for (Object m : al) {
+                    dcbm2.addElement(m);
+                }
+                folders2.setModel(dcbm2);
+
             } catch (IOException ex) {
                 Logger.getLogger(List.class.getName()).log(Level.SEVERE, null, ex);
             }

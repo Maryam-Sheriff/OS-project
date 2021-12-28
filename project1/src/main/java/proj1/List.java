@@ -27,7 +27,7 @@ public class List extends javax.swing.JFrame {
     public List() {
         initComponents();
         try {
-            Process p = Runtime.getRuntime().exec("ls -a /");
+            Process p = Runtime.getRuntime().exec("ls -a " + path);
 
             BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
@@ -57,6 +57,7 @@ public class List extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fType = new javax.swing.ButtonGroup();
         list = new javax.swing.JButton();
         folderPath = new javax.swing.JTextField();
         folders = new javax.swing.JComboBox<>();
@@ -64,12 +65,11 @@ public class List extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         back = new javax.swing.JButton();
         delete_folder = new javax.swing.JButton();
-        createfile = new javax.swing.JButton();
         createfolder = new javax.swing.JButton();
-        filename = new javax.swing.JTextField();
         foldername = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        f1 = new javax.swing.JRadioButton();
+        f2 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,14 +118,7 @@ public class List extends javax.swing.JFrame {
             }
         });
 
-        createfile.setText("Create File");
-        createfile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createfileActionPerformed(evt);
-            }
-        });
-
-        createfolder.setText("Create Folder");
+        createfolder.setText("Create File/ Folder");
         createfolder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createfolderActionPerformed(evt);
@@ -138,55 +131,60 @@ public class List extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Filme Name:");
+        jLabel3.setText("File/Folder  Name:");
 
-        jLabel3.setText("Folder Name:");
+        fType.add(f1);
+        f1.setText("File");
+
+        fType.add(f2);
+        f2.setText("Folder");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(Return, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(folders, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(list, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 44, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(Return, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(folders, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(list, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 44, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(delete_folder, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(delete_folder, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(140, 140, 140)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(85, 85, 85)
+                                .addComponent(folderPath, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(createfolder, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(66, 66, 66)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(foldername, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(f1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(337, 337, 337)
+                                .addComponent(f2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(folderPath, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(createfile)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(createfolder)
-                .addGap(68, 68, 68))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(4, 4, 4)
-                .addComponent(filename)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(1, 1, 1)
-                .addComponent(foldername, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,17 +198,16 @@ public class List extends javax.swing.JFrame {
                     .addComponent(folders, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(list)
                     .addComponent(Return))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(filename, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(foldername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createfile)
-                    .addComponent(createfolder))
-                .addGap(46, 46, 46)
+                    .addComponent(jLabel3)
+                    .addComponent(f1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(f2)
+                .addGap(2, 2, 2)
+                .addComponent(createfolder)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back)
                     .addComponent(delete_folder))
@@ -305,36 +302,54 @@ public class List extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(List.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
     }//GEN-LAST:event_delete_folderActionPerformed
-
-    private void createfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createfileActionPerformed
-        if (folders.getSelectedItem() != null) {
-            path += "/" + folders.getSelectedItem();
-            String fname = filename.getText();
-
-            try {
-                Process p = Runtime.getRuntime().exec("touch " + path + "/" + fname + ".txt");
-
-            } catch (IOException ex) {
-                Logger.getLogger(List.class.getName()).log(Level.SEVERE, null, ex);
-            }    }//GEN-LAST:event_createfileActionPerformed
 
     private void foldernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foldernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_foldernameActionPerformed
 
     private void createfolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createfolderActionPerformed
-        if (folders.getSelectedItem() != null) {
+        if (foldername.getText() != null) {
             path += "/" + folders.getSelectedItem();
             String fdname = foldername.getText();
 
             try {
-                Process p = Runtime.getRuntime().exec("mkdir " + path + "/" + fdname);
+                if (f2.isSelected()) {
+                    Process p = Runtime.getRuntime().exec("mkdir " + path + "/" + fdname);
+                    javax.swing.JOptionPane.showMessageDialog(null, "Operation Success");
+                } else if (f1.isSelected()) {
+                    Process p = Runtime.getRuntime().exec("touch " + path + "/" + fdname);
+                    javax.swing.JOptionPane.showMessageDialog(null, "Operation Success");
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(null, "Please Select a Type");
+                }
 
             } catch (IOException ex) {
                 Logger.getLogger(List.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }     }//GEN-LAST:event_createfolderActionPerformed
+            try {
+                Process p = Runtime.getRuntime().exec("ls -a " + path);
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+                String output = null;
+                ArrayList al = new ArrayList();
+                while ((output = br.readLine()) != null) {
+                    al.add(output);
+                }
+
+                DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
+                for (Object i : al) {
+                    dcbm.addElement(i);
+                }
+                folders.setModel(dcbm);
+            } catch (IOException ex) {
+                Logger.getLogger(List.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else
+            javax.swing.JOptionPane.showMessageDialog(null, "Enter File name", "Error", JOptionPane.ERROR_MESSAGE);
+         }//GEN-LAST:event_createfolderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,15 +366,15 @@ public class List extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Return;
     private javax.swing.JButton back;
-    private javax.swing.JButton createfile;
     private javax.swing.JButton createfolder;
     private javax.swing.JButton delete_folder;
-    private javax.swing.JTextField filename;
+    private javax.swing.JRadioButton f1;
+    private javax.swing.JRadioButton f2;
+    private javax.swing.ButtonGroup fType;
     private javax.swing.JTextField folderPath;
     private javax.swing.JTextField foldername;
     private javax.swing.JComboBox<String> folders;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton list;
     // End of variables declaration//GEN-END:variables
